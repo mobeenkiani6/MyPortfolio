@@ -14,8 +14,26 @@ import {
   Server
 } from 'lucide-react';
 
-const Skills = () => {
-  const skillCategories = [
+interface Skill {
+  name: string;
+  level: number;
+  icon: JSX.Element;
+}
+
+interface SkillCategory {
+  title: string;
+  icon: JSX.Element;
+  skills: Skill[];
+}
+
+interface Language {
+  name: string;
+  level: string;
+  flag: string;
+}
+
+const Skills: React.FC = () => {
+  const skillCategories: SkillCategory[] = [
     {
       title: 'Frontend Development',
       icon: <Code className="w-8 h-8" />,
@@ -58,14 +76,14 @@ const Skills = () => {
     }
   ];
 
-  const languages = [
+  const languages: Language[] = [
     { name: 'English', level: 'Fluent', flag: '🌐' },
     { name: 'Urdu', level: 'Native', flag: '🏠' },
     { name: 'Potohari', level: 'Fluent', flag: '🗣️' }
   ];
 
-  const getCategoryColor = (index) => {
-    const colors = [
+  const getCategoryColor = (index: number): string => {
+    const colors: string[] = [
       'from-blue-500 to-cyan-500',
       'from-green-500 to-emerald-500', 
       'from-purple-500 to-pink-500',
@@ -74,8 +92,8 @@ const Skills = () => {
     return colors[index % colors.length];
   };
 
-  const getSkillColor = (index) => {
-    const colors = [
+  const getSkillColor = (index: number): string => {
+    const colors: string[] = [
       'from-blue-500 to-cyan-500',
       'from-green-500 to-emerald-500',
       'from-purple-500 to-pink-500', 

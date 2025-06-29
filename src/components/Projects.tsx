@@ -2,8 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, ExternalLink, Calendar, Tag, Code, Palette, Github } from 'lucide-react';
 
-const Projects = () => {
-  const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  thumbnail: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  videoUrl?: string;
+  tags: string[];
+  date: string;
+  type: string;
+  duration?: string;
+}
+
+const Projects: React.FC = () => {
+  const projects: Project[] = [
     {
       id: 1,
       title: 'E-Commerce Dashboard',
@@ -78,14 +93,14 @@ const Projects = () => {
     }
   ];
 
-  const [selectedCategory, setSelectedCategory] = React.useState('All');
-  const categories = ['All', 'Frontend Development', 'Full Stack Development', 'Video Editing'];
+  const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
+  const categories: string[] = ['All', 'Frontend Development', 'Full Stack Development', 'Video Editing'];
 
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const getCategoryIcon = (category) => {
+  const getCategoryIcon = (category: string): JSX.Element => {
     switch (category) {
       case 'Frontend Development':
       case 'Full Stack Development':
@@ -97,7 +112,7 @@ const Projects = () => {
     }
   };
 
-  const getCategoryColor = (category) => {
+  const getCategoryColor = (category: string): string => {
     switch (category) {
       case 'Frontend Development':
         return 'bg-blue-500/80 text-white';
