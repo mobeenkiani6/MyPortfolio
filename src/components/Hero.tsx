@@ -1,10 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code, Download, Mail, MapPin, Laptop } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Code, Download, Mail, MapPin, Laptop } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -33,7 +36,7 @@ const Hero = () => {
               <br />
               <span className="text-white">Mobeen Zaheer</span>
             </motion.h1>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -45,7 +48,7 @@ const Hero = () => {
                 Frontend Developer & Video Editor
               </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -68,9 +71,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed"
             >
-              Passionate Frontend Developer specializing in React.js and modern web technologies. 
-              Building responsive, user-friendly applications with clean code and creative problem-solving. 
-              Also skilled in video editing for engaging digital content.
+              Passionate Frontend Developer specializing in React.js and modern
+              web technologies. Building responsive, user-friendly applications
+              with clean code and creative problem-solving. Also skilled in
+              video editing for engaging digital content.
             </motion.p>
 
             <motion.div
@@ -80,13 +84,20 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <button className="group bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2">
-                <Code size={20} className="group-hover:scale-110 transition-transform" />
+                <Code
+                  size={20}
+                  className="group-hover:scale-110 transition-transform"
+                />
                 View My Work
               </button>
-              <button className="border-2 border-blue-400 text-blue-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-blue-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+              <a
+                href="/MK-CV.pdf"
+                download
+                className="border-2 border-blue-400 text-blue-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-blue-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
                 <Download size={20} />
                 Download CV
-              </button>
+              </a>
             </motion.div>
           </motion.div>
 

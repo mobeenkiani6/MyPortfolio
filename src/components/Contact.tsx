@@ -34,7 +34,7 @@ const Contact = () => {
       icon: <Linkedin className="w-6 h-6" />,
       title: 'LinkedIn',
       value: 'Muhammad Mobeen Zaheer',
-      link: 'https://www.linkedin.com/in/muhammad-mobeen-zaheer-kiani'
+      link: 'https://www.linkedin.com/in/muhammad-mobeen-zaheer-kiani-7501a8266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
     },
     {
       icon: <Phone className="w-6 h-6" />,
