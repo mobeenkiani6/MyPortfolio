@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, User, MessageSquare, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Send, User, MessageSquare, Linkedin, Github } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,9 @@ const Contact = () => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted:', formData);
+    // You would typically integrate EmailJS or a backend API here
+    alert("Message sent! (Demo purpose)");
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const contactInfo = [
@@ -34,18 +37,18 @@ const Contact = () => {
       icon: <Linkedin className="w-6 h-6" />,
       title: 'LinkedIn',
       value: 'Muhammad Mobeen Zaheer',
-      link: 'https://www.linkedin.com/in/muhammad-mobeen-zaheer-kiani-7501a8266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+      link: 'https://www.linkedin.com/in/muhammad-mobeen-zaheer-kiani-7501a8266'
     },
     {
-      icon: <Phone className="w-6 h-6" />,
-      title: 'Phone',
-      value: '+92 318 8339340',
-      link: 'https://wa.me/923188339340'
+      icon: <Github className="w-6 h-6" />,
+      title: 'GitHub',
+      value: 'mobeenkiani6',
+      link: 'https://github.com/mobeenkiani6'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Location',
-      value: 'Thandapani Nilore, Islamabad',
+      value: 'Islamabad, Pakistan',
       link: null
     }
   ];
@@ -61,11 +64,11 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
               Let's Work Together
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
             Ready to bring your ideas to life? Get in touch and let's discuss your next project.
           </p>
         </motion.div>
@@ -81,9 +84,9 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Get in Touch</h3>
-              <p className="text-gray-300 mb-8 leading-relaxed text-sm sm:text-base">
-                I'm always excited to work on new projects and collaborate with creative minds. 
-                Whether you need web development, video editing, or have a unique creative challenge, 
+              <p className="text-slate-300 mb-8 leading-relaxed text-sm sm:text-base">
+                I'm always excited to work on new projects and collaborate with creative minds.
+                Whether you need a full-stack web application, a complex dashboard, or have a unique technical challenge,
                 I'd love to hear from you.
               </p>
             </div>
@@ -96,24 +99,24 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400/50 transition-all duration-300"
+                  className="flex items-center gap-4 p-4 glass-card rounded-xl hover:border-violet-500/50 transition-all duration-300 group"
                 >
-                  <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg text-white flex-shrink-0">
+                  <div className="p-3 bg-violet-500/10 rounded-lg text-violet-400 group-hover:bg-violet-500 group-hover:text-white transition-all duration-300 flex-shrink-0">
                     {info.icon}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h4 className="text-white font-semibold text-sm sm:text-base">{info.title}</h4>
+                    <h4 className="text-white font-semibold text-sm sm:text-base mb-1">{info.title}</h4>
                     {info.link ? (
                       <a
                         href={info.link}
                         target={info.link.startsWith('http') ? '_blank' : undefined}
                         rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base break-words"
+                        className="text-slate-400 hover:text-violet-400 transition-colors duration-200 text-sm sm:text-base break-words block"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-gray-300 text-sm sm:text-base">{info.value}</p>
+                      <p className="text-slate-400 text-sm sm:text-base">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -126,20 +129,20 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+              className="glass-card rounded-xl p-6"
             >
               <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">What I Can Help You With:</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  'React.js Development', 
-                  'Frontend Development', 
-                  'Full Stack Applications', 
-                  'Responsive Web Design', 
-                  'Video Editing', 
-                  'Social Media Content'
+                  'Full Stack Development',
+                  'MERN Stack Applications',
+                  'Dashboard & Analytics',
+                  'Responsive UI/UX',
+                  'API Integration',
+                  'Database Design'
                 ].map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 text-gray-300 text-sm">
-                    <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
+                  <div key={index} className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-1.5 h-1.5 bg-violet-500 rounded-full flex-shrink-0"></div>
                     {skill}
                   </div>
                 ))}
@@ -153,13 +156,13 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10"
+            className="glass-card rounded-2xl p-6 lg:p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                    <User className="w-4 h-4 inline mr-2" />
+                  <label className="block text-slate-300 font-medium mb-2 text-sm sm:text-base">
+                    <User className="w-4 h-4 inline mr-2 text-violet-400" />
                     Name
                   </label>
                   <input
@@ -168,13 +171,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none transition-colors duration-200 text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none transition-all duration-200 text-sm sm:text-base"
                     placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                    <Mail className="w-4 h-4 inline mr-2" />
+                  <label className="block text-slate-300 font-medium mb-2 text-sm sm:text-base">
+                    <Mail className="w-4 h-4 inline mr-2 text-violet-400" />
                     Email
                   </label>
                   <input
@@ -183,15 +186,15 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none transition-colors duration-200 text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none transition-all duration-200 text-sm sm:text-base"
                     placeholder="your.email@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                  <MessageSquare className="w-4 h-4 inline mr-2" />
+                <label className="block text-slate-300 font-medium mb-2 text-sm sm:text-base">
+                  <MessageSquare className="w-4 h-4 inline mr-2 text-violet-400" />
                   Subject
                 </label>
                 <input
@@ -200,13 +203,13 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none transition-colors duration-200 text-sm sm:text-base"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none transition-all duration-200 text-sm sm:text-base"
                   placeholder="Project Subject"
                 />
               </div>
 
               <div>
-                <label className="block text-white font-medium mb-2 text-sm sm:text-base">
+                <label className="block text-slate-300 font-medium mb-2 text-sm sm:text-base">
                   Message
                 </label>
                 <textarea
@@ -215,7 +218,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none transition-colors duration-200 resize-none text-sm sm:text-base"
+                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none transition-all duration-200 resize-none text-sm sm:text-base"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -224,7 +227,7 @@ const Contact = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Send size={20} />
                 Send Message
