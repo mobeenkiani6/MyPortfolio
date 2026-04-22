@@ -5,6 +5,19 @@ import { Briefcase, Calendar, MapPin, Code } from 'lucide-react';
 const Experience = () => {
   const experiences = [
     {
+      title: 'Full Stack Developer',
+      company: 'Personal Projects',
+      location: 'Remote',
+      period: 'Jun 2023 - Present',
+      type: 'development',
+      description: [
+        'Built full-stack applications using React.js frontend with Node.js backend',
+        'Designed and implemented MongoDB databases with efficient data modeling',
+        'Created RESTful APIs and handled authentication using JWT tokens',
+        'Deployed applications on various platforms with CI/CD pipelines'
+      ]
+    },
+    {
       title: 'Frontend Developer',
       company: 'Freelance',
       location: 'Remote',
@@ -17,45 +30,11 @@ const Experience = () => {
         'Collaborated with clients to deliver pixel-perfect designs and optimal user experiences',
         'Implemented responsive design principles ensuring cross-browser compatibility'
       ]
-    },
-    {
-      title: 'Full Stack Developer',
-      company: 'Personal Projects',
-      location: 'Remote',
-      period: 'Jun 2023 - Present',
-      type: 'development',
-      description: [
-        'Built full-stack applications using React.js frontend with Node.js backend',
-        'Designed and implemented MongoDB databases with efficient data modeling',
-        'Created RESTful APIs and handled authentication using JWT tokens',
-        'Deployed applications on various platforms with CI/CD pipelines'
-      ]
-    }
-  ];
-
-  const education = [
-    {
-      degree: 'Bachelor of Computer Science',
-      institution: 'Institute of Space Technology (IST)',
-      period: 'Sep 2023 - Present',
-      status: 'Current'
-    },
-    {
-      degree: 'Intermediate in Computer Science',
-      institution: 'Punjab College of Science and Technology Islamabad',
-      period: 'Dec 2021 - May 2023',
-      status: 'Completed'
-    },
-    {
-      degree: 'Matric - Science Subjects',
-      institution: 'Army Public School (APSACS) Pothwar Islamabad',
-      period: 'Jan 2020 - Dec 2021',
-      status: 'Completed'
     }
   ];
 
   return (
-    <section id="experience" className="py-20 relative">
+    <section id="experience" className="py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,98 +53,125 @@ const Experience = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Professional Experience */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <Briefcase className="text-blue-400" />
-              Professional Experience
-            </h3>
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="glass-card rounded-xl p-4 sm:p-6 transition-all duration-300 group"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div className="flex items-center gap-3 mb-2 sm:mb-0">
-                      <div className="p-2 bg-violet-500/10 rounded-lg group-hover:bg-violet-500/20 transition-colors">
-                        <Code className="text-violet-400" size={20} />
-                      </div>
-                      <h4 className="text-lg sm:text-xl font-semibold text-white group-hover:text-violet-400 transition-colors">{exp.title}</h4>
-                    </div>
-                    <div className="flex items-center gap-2 text-violet-400 text-sm bg-violet-500/10 px-3 py-1 rounded-full">
-                      <Calendar size={14} />
-                      {exp.period}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-400 mb-4 text-sm ml-1">
-                    <MapPin size={16} className="text-violet-400" />
-                    <span>{exp.company} • {exp.location}</span>
-                  </div>
-                  <ul className="space-y-2">
-                    {exp.description.map((item, idx) => (
-                      <li key={idx} className="text-slate-300 flex items-start gap-2 text-sm sm:text-base">
-                        <span className="text-violet-400 mt-1.5 flex-shrink-0 text-xs">●</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <div className="relative max-w-4xl mx-auto">
+          {/* Central Glowing Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-slate-800 rounded-full overflow-hidden">
+            <motion.div
+              className="w-full h-1/2 bg-gradient-to-b from-violet-500 via-fuchsia-500 to-transparent"
+              animate={{ y: ["-100%", "200%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
 
-          {/* Education */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
-              </svg>
-              Education
-            </h3>
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/10 hover:border-blue-400/50 transition-all duration-300"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <h4 className="text-base sm:text-lg font-semibold text-white pr-2">{edu.degree}</h4>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${edu.status === 'Current'
-                      ? 'bg-green-500/20 text-green-400'
-                      : 'bg-blue-500/20 text-blue-400'
-                      }`}>
-                      {edu.status}
-                    </span>
+          <div className="space-y-24">
+            {experiences.map((exp, index) => {
+              const isEven = index % 2 === 0;
+              const isFirst = index === 0;
+              return (
+                <div key={index} className="relative flex items-center justify-between w-full">
+                  {/* Left Column */}
+                  <div className={`w-5/12 ${isEven ? 'pr-8 text-right' : 'order-1 opacity-0'}`}>
+                    {isEven && (
+                      <motion.div
+                        initial={{ opacity: 0, x: -50, scale: 0.8 }}
+                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className={`glass-card p-6 sm:p-8 rounded-2xl relative group transition-all duration-300 transform perspective-1000 ${
+                          isFirst ? 'border-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.2)]' : ''
+                        } hover:shadow-[0_15px_40px_rgba(139,92,246,0.3)]`}
+                        style={{ transformStyle: "preserve-3d" }}
+                        whileHover={{ translateZ: 20, scale: 1.02 }}
+                      >
+                        {isFirst && (
+                          <div className="absolute -top-3 -right-3 bg-violet-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_15px_rgba(139,92,246,0.8)] border border-violet-400 z-10 animate-pulse">
+                            Current Role
+                          </div>
+                        )}
+                        <div className="flex flex-col gap-2 mb-4">
+                          <h4 className="text-xl sm:text-2xl font-bold text-white group-hover:text-violet-400 transition-colors">
+                            {exp.title}
+                          </h4>
+                          <span className="text-violet-400 font-medium bg-violet-500/10 self-end px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                            <Calendar size={14} /> {exp.period}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-end gap-2 text-slate-400 mb-6 text-sm">
+                          <span>{exp.company} • {exp.location}</span>
+                          <MapPin size={16} className="text-fuchsia-400" />
+                        </div>
+                        <ul className="space-y-3 text-left">
+                          {exp.description.map((item, idx) => (
+                            <li key={idx} className="text-slate-300 text-sm sm:text-base flex items-start gap-3">
+                              <span className="text-violet-500 mt-1.5 flex-shrink-0 text-[10px]">♦</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
                   </div>
-                  <p className="text-gray-300 mb-2 text-sm sm:text-base">{edu.institution}</p>
-                  <div className="flex items-center gap-2 text-blue-400 text-sm">
-                    <Calendar size={16} />
-                    {edu.period}
+
+                  {/* Center Node */}
+                  <div className="w-10 h-10 absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center z-20">
+                    <motion.div
+                      whileInView={{ scale: [0, 1.2, 1], rotate: [0, 180, 360] }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                      className={`w-8 h-8 rounded-full z-20 ${
+                        isFirst 
+                          ? 'bg-violet-500 border-4 border-fuchsia-400 shadow-[0_0_30px_rgba(217,70,239,1)]' 
+                          : 'bg-slate-900 border-4 border-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.8)]'
+                      }`}
+                    />
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+
+                  {/* Right Column */}
+                  <div className={`w-5/12 ${!isEven ? 'pl-8 text-left order-2' : 'opacity-0'}`}>
+                    {!isEven && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 50, scale: 0.8 }}
+                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className={`glass-card p-6 sm:p-8 rounded-2xl relative group transition-all duration-300 transform perspective-1000 ${
+                          isFirst ? 'border-fuchsia-500 shadow-[0_0_20px_rgba(217,70,239,0.2)]' : ''
+                        } hover:shadow-[0_15px_40px_rgba(217,70,239,0.3)]`}
+                        style={{ transformStyle: "preserve-3d" }}
+                        whileHover={{ translateZ: 20, scale: 1.02 }}
+                      >
+                        {isFirst && (
+                          <div className="absolute -top-3 -left-3 bg-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_15px_rgba(217,70,239,0.8)] border border-fuchsia-400 z-10 animate-pulse">
+                            Current Role
+                          </div>
+                        )}
+                        <div className="flex flex-col gap-2 mb-4">
+                          <h4 className="text-xl sm:text-2xl font-bold text-white group-hover:text-fuchsia-400 transition-colors">
+                            {exp.title}
+                          </h4>
+                          <span className="text-fuchsia-400 font-medium bg-fuchsia-500/10 self-start px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                            <Calendar size={14} /> {exp.period}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-start gap-2 text-slate-400 mb-6 text-sm">
+                          <MapPin size={16} className="text-violet-400" />
+                          <span>{exp.company} • {exp.location}</span>
+                        </div>
+                        <ul className="space-y-3">
+                          {exp.description.map((item, idx) => (
+                            <li key={idx} className="text-slate-300 text-sm sm:text-base flex items-start gap-3">
+                              <span className="text-fuchsia-500 mt-1.5 flex-shrink-0 text-[10px]">♦</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

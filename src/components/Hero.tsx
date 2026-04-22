@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Code, Download, Mail, MapPin, Laptop } from "lucide-react";
 import profilePic from "./profile.jpeg";
+import Typewriter from "typewriter-effect";
 
 const Hero = () => {
   return (
@@ -47,9 +48,16 @@ const Hero = () => {
               <div className="p-2 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
                 <Laptop className="text-violet-400" size={24} />
               </div>
-              <p className="text-lg sm:text-xl lg:text-2xl text-slate-300 font-light">
-                Full Stack Developer
-              </p>
+              <div className="text-lg sm:text-xl lg:text-2xl text-slate-300 font-light flex gap-2">
+                <Typewriter
+                  options={{
+                    strings: ["Full Stack Developer", "Backend Engineer", "Software Engineer"],
+                    autoStart: true,
+                    loop: true,
+                    wrapperClassName: "text-violet-400 font-semibold"
+                  }}
+                />
+              </div>
             </motion.div>
 
             <motion.div

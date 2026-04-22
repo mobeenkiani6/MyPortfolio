@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import {
   ExternalLink,
   Github,
@@ -25,6 +31,49 @@ interface Project {
   liveUrl?: string;
   featured?: boolean;
 }
+
+const TiltCard = ({ children, index, isActive }: { children: React.ReactNode, index: number, isActive?: boolean }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-200, 200], [10, -10]);
+  const rotateY = useTransform(x, [-200, 200], [-10, 10]);
+
+  function handleMouse(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    x.set(event.clientX - rect.left - rect.width / 2);
+    y.set(event.clientY - rect.top - rect.height / 2);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      style={{ perspective: 1000 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="h-full"
+    >
+      <motion.div
+        onMouseMove={handleMouse}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className={`group glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full min-h-[480px] ${
+          isActive 
+            ? 'shadow-[0_0_30px_rgba(139,92,246,0.6)] border-violet-400 scale-105' 
+            : 'hover:shadow-[0_10px_30px_rgba(139,92,246,0.2)]'
+        }`}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const Projects: React.FC = () => {
   const projects: Project[] = [
@@ -128,17 +177,30 @@ const Projects: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full"
-            >
-              <div className="relative h-56 overflow-hidden flex-shrink-0">
+        <div className="w-full max-w-6xl mx-auto mt-12 pb-16">
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 0,
+              depth: 150,
+              modifier: 1.5,
+              slideShadows: false,
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            navigation={true}
+            autoplay={{ delay: 4000, disableOnInteraction: true }}
+            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+            className="w-full pt-10 pb-16 projects-swiper"
+          >
+            {filteredProjects.map((project, index) => (
+              <SwiperSlide key={project.id} className="w-[300px] sm:w-[400px] h-auto self-stretch">
+                {({ isActive }) => (
+                  <TiltCard index={index} isActive={isActive}>
+              <div className="relative h-56 overflow-hidden flex-shrink-0" style={{ transform: "translateZ(30px)" }}>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity" />
                 <img
                   src={project.image}
@@ -174,32 +236,35 @@ const Projects: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                        className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm rounded-full transition-all shadow-[0_0_15px_rgba(139,92,246,0.4)] hover:shadow-[0_0_25px_rgba(139,92,246,0.8)]"
                         title="View Live Demo"
                       >
-                        <ExternalLink size={18} />
+                        Live Demo
                       </a>
                     )}
                   </div>
                 </div>
 
-                <p className="text-slate-300 mb-6 text-sm line-clamp-3 leading-relaxed flex-grow">
+                <p className="text-slate-300 mb-6 text-sm line-clamp-3 leading-relaxed flex-grow" style={{ transform: "translateZ(20px)" }}>
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mt-auto">
+                <div className="flex flex-wrap gap-2 mt-auto" style={{ transform: "translateZ(25px)" }}>
                   {project.techStack.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 text-xs font-medium text-violet-300 bg-violet-500/10 rounded-full border border-violet-500/20"
+                      className="px-2 py-1 text-xs font-medium text-violet-300 bg-violet-500/10 rounded-full border border-violet-500/20 shadow-[0_2px_10px_rgba(139,92,246,0.1)]"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            </motion.div>
-          ))}
+                  </TiltCard>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <motion.div

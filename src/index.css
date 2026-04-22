@@ -8,16 +8,76 @@
   html {
     font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
+    cursor: none; /* Default to none for custom cursor */
+  }
+  body, a, button {
+    cursor: none;
   }
   body {
-    @apply bg-slate-950 text-slate-200 antialiased;
+    @apply bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-slate-200 antialiased min-h-screen overflow-x-hidden;
   }
 }
 
 .glass {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
 }
 
 .glass-card {
-  @apply bg-slate-900/50 backdrop-blur-md border border-slate-800/50 hover:border-violet-500/30 transition-all duration-300;
+  @apply bg-white/[0.03] backdrop-blur-lg border border-white/10 hover:border-violet-500/50 hover:bg-white/[0.05] shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] transition-all duration-300;
+}
+
+@keyframes holographic {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shimmer-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-hover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  transform: skewX(-20deg);
+  transition: .5s;
+}
+
+.shimmer-hover:hover::before {
+  left: 150%;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.animate-scroll-right {
+  animation: scrollRight 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.pause-hover:hover .animate-scroll-left,
+.pause-hover:hover .animate-scroll-right {
+  animation-play-state: paused;
+}
+
+.mask-edges {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
